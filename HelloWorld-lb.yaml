@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: lstmmodel-ml-deployment-meghakarale
-  namespace: ns-meghakarale
+  name: lstmmodel-ml-deployment-<user-id>
+  namespace: ns-<user-id>
 spec:
   selector:
     matchLabels:
@@ -16,18 +16,18 @@ spec:
       containers:
       - name: lstmmodelml
     # enter the path to your image, be sure to include the correct region prefix    
-        image: ap-mumbai-1.ocir.io/bmltb10irumx/ap-mumbai-1-dop-1-ocir-1/oci_sample_webapp_mk:${BUILDRUN_HASH}
+        image: <your OCIR Image full name>:${BUILDRUN_HASH}
         ports:
         - containerPort: 8501
       imagePullSecrets:
     # enter the name of the secret you created  
-      - name: ocir-secret-meghakarale
+      - name: ocir-secret-<user-id>
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: lstmmodel-ml-service-meghakarale
-  namespace: ns-meghakarale
+  name: lstmmodel-ml-service-<user-id>
+  namespace: ns-<user-id>
   annotations:
     oci.oraclecloud.com/load-balancer-type: "lb"
     service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
