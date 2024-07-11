@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: irismodel-ml-deployment-<yourName>
+  name: nlpmodel-ml-deployment-<yourName>
   namespace: ns-<yourName>
 spec:
   selector:
     matchLabels:
-      app: irismodelml
+      app: nlpmodelml
   replicas: 1
   template:
     metadata:
       labels:
-        app: irismodelml
+        app: nlpmodelml
     spec:
       containers:
-      - name: irismodelml
+      - name: nlpmodelml
     # enter the path to your image, be sure to include the correct region prefix    
         image: us-ashburn-1.ocir.io/idrues0zhwlo/us-ashburn-1-dop-1-ocir-1/oci_sample_webapp_<yourName>:${BUILDRUN_HASH}
         ports:
@@ -26,7 +26,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: irismodel-ml-service-<yourName>
+  name: nlpmodel-ml-service-<yourName>
   namespace: ns-<yourName>
   annotations:
     oci.oraclecloud.com/load-balancer-type: "lb"
@@ -40,4 +40,4 @@ spec:
     protocol: TCP
     targetPort: 8501
   selector:
-    app: irismodelml
+    app: nlpmodelml
