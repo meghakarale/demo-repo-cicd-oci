@@ -1,6 +1,6 @@
 #Mention base image
 
-FROM python:3.8-bookworm
+FROM continuumio/anaconda3:2022.05
 
 #Copy the current folder structure and content to docker container file system folder
 
@@ -12,7 +12,6 @@ EXPOSE 8501
 # Set current working directory
 WORKDIR /usr/ML/app
 
-RUN pip install --upgrade pip
 # Install the required libraries
 RUN pip install -r  requirements.txt
 
